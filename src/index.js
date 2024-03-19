@@ -4,15 +4,17 @@ const morgan = require("morgan");
 const handlebars = require("express-handlebars");
 const exp = require("constants");
 
-const route = require("./routes")
+const route = require("./routes");
 
 const app = express();
 const port = 8080;
 
 // Middleware
-app.use(express.urlencoded({
-  extended: true
-}));
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
 app.use(express.json());
 
 // Use img
@@ -26,7 +28,11 @@ const hbs = handlebars.create({
   defaultLayout: "main",
   extname: ".hbs",
 });
-app.engine("hbs", hbs.engine);
+app.engine(
+  "hbs",
+
+  hbs.engine
+);
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "resources/views"));
 
