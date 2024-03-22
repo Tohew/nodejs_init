@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 const handlebars = require('express-handlebars');
+const methodOverride = require('method-override');
 const exp = require('constants');
 
 const route = require('./routes');
@@ -21,6 +22,8 @@ app.use(
 );
 app.use(express.json());
 
+app.use(methodOverride('_method'));
+
 // Use img
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -32,7 +35,7 @@ const hbs = handlebars.create({
     defaultLayout: 'main',
     extname: '.hbs',
     helpers: {
-        sum: (a, b) => a+b
+        sum: (a, b) => a + b,
     },
 });
 app.engine(
